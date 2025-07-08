@@ -37,5 +37,4 @@ class PostCreateView(generics.CreateAPIView):
 class PostRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
-    permission_classes = [IsOwnerOrReadOnly]
-    
+    permission_classes = [IsOwnerOrReadOnly] #작성자만 수정 및 삭제 가능하게 설정해주는 커스텀 펄미션(posts/permissons.py 에서 만들어줌)
