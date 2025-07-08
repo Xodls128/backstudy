@@ -1,6 +1,7 @@
 from rest_framework import generics, permissions
 from .models import Post
 from .serializers import PostSerializer
+from .permissions import IsOwnerOrReadOnly
 
 # 목록 조회 & 새 글 작성
 '''
@@ -36,4 +37,5 @@ class PostCreateView(generics.CreateAPIView):
 class PostRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly] #글 상세 조회, 수정, 삭제 - 로그인 시 가능
+    permission_classes = [IsOwnerOrReadOnly]
+    
